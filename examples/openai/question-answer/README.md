@@ -12,4 +12,4 @@ powershell
 
 ## Examples
 
-[question answer of a page](examples\openai\question-answer\public_qa.py)
+[question answer of a page](public_qa.py)
