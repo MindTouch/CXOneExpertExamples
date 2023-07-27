@@ -40,7 +40,7 @@ app.get(redirectPath, async (req, res) => {
 
     // Redirect back to home with the code. Front end can now request it via token.json endpoint
     res.statusCode = 302;
-    res.setHeader('Location', '/?code=' + req.query.code);
+    res.setHeader('Location', `/?code=${req.query.code}`);
     res.end();
 });
 
