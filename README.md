@@ -12,3 +12,6 @@ In order to interaction with our API as an approved session and/or as authentica
 Server API Tokens are used to create integrations between a server application, IoT, bots, or anything that can communicate over HTTPS, and the API. [Docs on usage](https://success.mindtouch.com/Integrations/API/Authorization_Tokens/Use_a_Server_API_Token_With_an_Integration#Node.js_Example) 
 
 
+### OAuth2 Tokens
+
+OAuth2 tokens are used for higher level of security where user browser context and privacy is required. [Read more on how to integrate](https://success.mindtouch.com/Integrations/API/Authorization_Tokens/Use_an_OAuth_API_Token_With_an_Integration).
