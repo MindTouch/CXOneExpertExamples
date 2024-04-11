@@ -6,13 +6,14 @@ const loadScript = (url) => {
   const script = document.createElement("script");
   script.type = "text/javascript";
   script.src = url;
-  script.onload = () => console.log("Script loaded successfully.");
+  script.async = true;
+  script.onload = () => console.info("Script loaded successfully.");
   script.onerror = () => console.error("Error loading the script.");
   document.body.appendChild(script);
 };
 
 /**
- * Appends a MindTouch embed script element to the document body and loads a script from a specified URL.
+ * Appends a CXOne Expert (formerly MindTouch) embed script element to the document body and loads a script from a specified URL.
  * This function specifically handles MindTouch embeds which are used to integrate MindTouch content.
  *
  * @param {string} domain - The domain for the MindTouch embed, used to construct the script's source URL.
@@ -23,9 +24,8 @@ const appendTouchpointToBody = (domain, id) => {
   script.type = "mindtouch/embed";
   script.id = `mindtouch-embed-${id}`;
   script.async = false;
-  script.onload = (event) => {
-    console.log("Touchpoint loaded successfully.");
-    console.log(event);
+  script.onload = () => {
+    console.info(`Touchpoint ${id} loaded successfully.`);
   };
   document.body.appendChild(script);
   loadScript(`https://${domain}/@embed/${id}.js`);
@@ -43,8 +43,9 @@ document.addEventListener("mindtouch-web-widget:search:loaded", ({ data }) => {
 
   // programmable widget interface contains properties and functions
   const widget = data.widget;
-
-  console.log(widget);
+  
+  // All possible interfaces displayed in the dev console
+  console.info(widget);
   
   // perform a search
   widget.searchQuery = 'code';
