@@ -2,32 +2,15 @@ import requests
 import xmltodict
 import urllib.parse
 from dotenv import dotenv_values
-
-
-def get_deki_token(key: str, secret: str, user: str) -> str:
-    """
-    Get a token as user using server token key/secret
-    """
-    import hashlib
-    import time
-    import hmac
-
-    epoch = str(int(time.time()))
-    message_bytes = f'{key}_{epoch}_{user}'.encode('utf-8')
-    secret_bytes = secret.encode('utf-8')
-    hash = hmac.new(secret_bytes, message_bytes,
-                    digestmod=hashlib.sha256).hexdigest().lower()
-    return f'tkn_{key}_{epoch}_{user}_{hash}'
+from common import get_deki_token
 
 
 def search_kernels(query, domain, token):
     encoded_query = urllib.parse.quote(query)
     url = f"{domain}@api/deki/llm/kernels?q={encoded_query}&limit=50"
     headers = {
-        'X-Deki-Token': token,
-        'Content-Type': "text/xml"
+        'X-Deki-Token': token
     }
-
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # Raise an exception for non-200 responses
@@ -39,7 +22,7 @@ def search_kernels(query, domain, token):
 
 
 if __name__ == '__main__':
-    
+
     # Get input query from user
     query = input('Query: ')
 
