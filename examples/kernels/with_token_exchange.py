@@ -33,7 +33,7 @@ def exchange_identity_token(identity_token_jwt, domain):
     endpoint = f'{domain}@app/auth/token/exchange'
 
     # HTTP headers
-    headers = {'Content-Type': 'application/json'}
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
 
     # Use requests.Session() for repeated requests
     with requests.Session() as session:

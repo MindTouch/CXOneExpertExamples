@@ -4,6 +4,8 @@ import streamlit as st
 from common import completions_kernels
 from dotenv import dotenv_values
 import requests
+import os
+from pprint import pprint
 
 # Retrieve credentials from environment variables
 env_vars = dotenv_values("examples/kernels/.env")
@@ -45,6 +47,12 @@ def chat_ux():
                 completion = completions_kernels(
                     prompt, DOMAIN, authorization=st.session_state['authorization'])
                 response = completion['response']['completion']
+                if response is not None:
+                    for page in completion['response']['pages']['page']:
+                        nl = '  \n'
+                        response = f"{response}{nl}Page {page['uri.ui']}"
+                else:
+                    response = 'No knowledge found.'
                 st.write(response)
 
 

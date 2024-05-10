@@ -19,7 +19,7 @@ def get_deki_token(key: str, secret: str, user: str) -> str:
     return f'tkn_{key}_{epoch}_{user}_{hash}'
 
 
-def completions_kernels(query, domain, token: str = None, authorization: str = None, limit: int = 100, threshold=0.5):
+def completions_kernels(query, domain, token: str = None, authorization: str = None, limit: int = 50, threshold=0.8):
     encoded_query = urllib.parse.quote(query)
     url = f"{domain}@api/deki/llm/completion?q={encoded_query}&limit={limit}&threshold={threshold}"
     headers = {}
