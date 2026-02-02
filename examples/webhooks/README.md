@@ -44,7 +44,7 @@ Makes a POST request to `{base_url}/@api/deki/webhooks` with XML body:
 ```xml
 <webhook>
     <webhook-url>{unique-url}</webhook-url>
-    <authorization-header>Bearer imp_1754952744_ce363a4d138b88ff815a8d3e32924cd</authorization-header>
+    <authorization-header>Bearer {bearer-authorization-header}</authorization-header>
 </webhook>
 ```
 **NOTE:** This authorization header does not actually serve as authorizing, rather it is for validation for the end user listening to the Webhook.
