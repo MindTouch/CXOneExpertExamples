@@ -58,13 +58,14 @@ def authenticate_with_expert(base_url):
             print(f"   Response: {e.response.text}")
         sys.exit(1)
 
-def create_webhook(base_url, webhook_url):
+def create_webhook(base_url, webhook_url, bearer_authorization_header):
     """
     Create a webhook in the target system
     
     Args:
         base_url: Base URL of the target site (e.g., 'https://example.com')
         webhook_url: The unique webhook URL to receive events
+        bearer_authorization_header: The Bearer token for authorization in the webhook
     
     Returns:
         The webhook ID from the response
@@ -86,7 +87,7 @@ def create_webhook(base_url, webhook_url):
     
     xml_body = f"""<webhook>
     <webhook-url>{webhook_url}</webhook-url>
-    <authorization-header>Bearer imp_1754952744_ce363a4d138b88ff815a8d3e32924cd</authorization-header>
+    <authorization-header>Bearer {bearer_authorization_header}</authorization-header>
 </webhook>"""
 
     api_url = f"{base_url}/@api/deki/webhooks"
@@ -244,6 +245,12 @@ def main():
     if not base_url:
         print("Base URL is required")
         sys.exit(1)
+
+    bearer_authorization_header = input("\nEnter the Bearer authorization token for your webhook (e.g., imp_xxxxx): ").strip()
+    
+    if not bearer_authorization_header:
+        print("Bearer authorization token for your webhook is required")
+        sys.exit(1)
     
     base_url = base_url.rstrip('/')
     
@@ -254,7 +261,7 @@ def main():
 
     authenticate_with_expert(base_url)
     
-    webhook_id = create_webhook(base_url, webhook_url)
+    webhook_id = create_webhook(base_url, webhook_url, bearer_authorization_header)
     
     add_page_create_event(base_url, webhook_id)
     

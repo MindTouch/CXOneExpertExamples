@@ -29,6 +29,8 @@ pip install requests
 
 3. Enter your target site's base URL when prompted (e.g., `https://example.com`)
 
+4. Enter the bearer authorization header you would like to use for your webook (e.g. `imp_xxxxxxxx`)
+
 ## What the Script Does
 
 ### Step 1: Generate Unique Webhook URL
